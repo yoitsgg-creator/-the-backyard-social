@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d2a">
+  <title>The Backyard Social | Order at your table</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">BY</div>
+    <div><div class="eyebrow">THE BACKYARD</div><div class="brand-name">social.</div></div>
+    <span class="table-pill" id="tableLabel">TABLE 1</span>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">GOOD FOOD. SLOW MOMENTS.</p>
+      <h1>Your corner.<br><em>Your kind of comfort.</em></h1>
+      <p class="hero-copy">Order a little something. We'll bring it to your table.</p>
+    </section>
+    <div class="section-head"><div><p class="eyebrow">MADE FOR YOUR MOOD</p><h2>Explore the menu</h2></div><button class="cart-button" id="cartOpen">Your order <span id="cartCount">0</span></button></div>
+    <div id="categoryFilters" class="filters"></div>
+    <section id="menuGrid" class="menu-grid"><div class="loading">Loading today's menu…</div></section>
+    <section class="staff-entry">
+      <details>
+        <summary>Staff access</summary>
+        <form id="loginForm" class="login-form">
+          <input name="username" autocomplete="username" placeholder="Username" required>
+          <input name="password" type="password" autocomplete="current-password" placeholder="Password" required>
+          <button class="primary-button">Sign in</button>
+        </form>
+        <p class="muted" id="loginMessage">For authorized café staff only.</p>
+        <div id="staffPanel" hidden>
+          <div class="section-head"><h2>Live orders</h2><button id="refreshOrders" class="quiet-button">Refresh</button></div>
+          <div id="staffOrders"></div>
+          <div id="adminMenuPanel" hidden>
+            <h2>Menu management</h2>
+            <form id="menuForm" class="login-form">
+              <input name="name" placeholder="Item name" required>
+              <input name="category" placeholder="Category" required>
+              <input name="priceRupees" type="number" min="1" step="0.5" placeholder="Price ₹" required>
+              <input name="description" placeholder="Description">
+              <button class="primary-button">Add menu item</button>
+            </form>
+            <div id="adminMenu"></div>
+          </div>
+        </div>
+      </details>
+    </section>
+  </main>
+  <footer><span>THE BACKYARD SOCIAL</span><span>Take a breath. Stay a while.</span></footer>
+
+  <div class="overlay" id="cartOverlay" hidden>
+    <section class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer-head"><h2 id="cartTitle">Your order</h2><button class="icon-button" id="cartClose" aria-label="Close cart">×</button></div>
+      <div id="cartItems"></div>
+      <label class="field-label" for="customerName">Name (optional)</label><input id="customerName" class="full-input" maxlength="80" placeholder="Name for your order">
+      <label class="field-label" for="orderNotes">Anything we should know?</label><textarea id="orderNotes" class="full-input" maxlength="300" placeholder="Less ice, allergies, etc."></textarea>
+      <div class="total-line"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+      <p class="muted small">Payment is at the counter for this prototype.</p>
+      <button id="placeOrder" class="primary-button wide">Place order</button>
+      <p id="orderMessage" class="muted" role="status"></p>
+    </section>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
